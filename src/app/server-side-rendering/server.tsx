@@ -1,14 +1,24 @@
-import React from 'react'
+// app/ServerComponent.tsx
+import React from "react";
+import Client from "../ClientComponent/ClientComponent";
 
-const server = () => {
-    const fetchData = () => {
-        fetch('https://jsonplaceholder.typicode.com/todos/1')
-       .then(response => response.json())
-    }
-    console.log()
-  return (
-    <div></div>
-  )
+interface Todo {
+  name: string;
+  id: number;
+  type: string;
+  available: boolean;
+
 }
 
-export default server
+
+const ServerComponent = async()=> {
+  const Response = await fetch("https://simple-books-api.glitch.me/books/");
+  const ParsedResponse: Todo[] = await Response.json();
+
+ 
+
+  return <Client data={ParsedResponse}/>
+
+};
+
+export default ServerComponent;
